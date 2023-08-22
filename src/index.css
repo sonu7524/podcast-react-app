@@ -9,6 +9,7 @@
 }
 
 body {
+  width: 100%;
   margin: 0;
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,7 +26,7 @@ a {
 }
 
 .input-wrapper {
-  width: 80vw;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +47,6 @@ a {
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
 }
 .podcast-title-heading {
   text-align: left !important;
@@ -62,7 +62,7 @@ a {
   border-radius: 1rem;
   padding: 0.5rem;
   height: 300px;
-  width: 100%;
+  width: 100%;  
 }
 
 .banner-wrapper img {
@@ -77,3 +77,4 @@ a {
   text-align: left;
   width: 100%;
 }
+  

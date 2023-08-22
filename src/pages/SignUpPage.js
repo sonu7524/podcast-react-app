@@ -17,7 +17,7 @@ function SignUpPage() {
             Already have an Account? Click here to Login.
           </p>
         ) : (
-          <p style={{ cursor: "pointer" }} onClick={() => setFlag(!flag)}>
+          <p style={{ cursor: "pointer"}} onClick={() => setFlag(!flag)}>
             Don't have an account? Click here to signup.
           </p>
         )}

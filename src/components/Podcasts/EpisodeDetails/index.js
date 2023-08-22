@@ -11,6 +11,7 @@ function EpisodeDetails({ index, title, description, audioFile, onClick }) {
         {description}
       </p>
       <Button
+      className="play-button"
         text={"Play"}
         onClick={() => onClick(audioFile)}
         width={"100px"}

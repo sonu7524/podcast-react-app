@@ -39,3 +39,12 @@
 .audio-btn {
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .volume-range {
+    display: none;
+  }
+  .custom-audio-player{
+    width: 100%;
+  }
+}
