@@ -2,21 +2,17 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC6_IP8KJ0_HoPSRvfE8ewmcT5BFBO8kc4",
-  authDomain: "podcast-app-react-rec.firebaseapp.com",
-  projectId: "podcast-app-react-rec",
-  storageBucket: "podcast-app-react-rec.appspot.com",
-  messagingSenderId: "612131373029",
-  appId: "1:612131373029:web:e788fc87ba5ff7b070390c",
-  measurementId: "G-JP4M5GCV85",
+  apiKey: "AIzaSyA97aI2lYUXl3_8CbyKNiTHU6eJ8fdXMLo",
+  authDomain: "podcast-poject.firebaseapp.com",
+  projectId: "podcast-poject",
+  storageBucket: "podcast-poject.appspot.com",
+  messagingSenderId: "999606635968",
+  appId: "1:999606635968:web:bfe600a6bb061465374c25",
+  measurementId: "G-E6Z4825GCE"
 };
 
 // Initialize Firebase
@@ -25,5 +21,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-export { auth, db, storage };
+export { auth, db, storage, provider };

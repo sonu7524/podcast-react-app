@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import InputComponent from "../../common/Input";
 import Button from "../../common/Button";
-import { auth, db } from "../../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db,provider } from "../../../firebase";
+import { createUserWithEmailAndPassword,signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../slices/userSlice";
@@ -22,7 +22,7 @@ function SignupForm() {
     console.log("Handling Signup...");
     setLoading(true);
     if (
-      password == confirmPassword &&
+      password === confirmPassword &&
       password.length >= 6 &&
       fullName &&
       email
@@ -61,7 +61,7 @@ function SignupForm() {
         setLoading(false);
       }
     } else {
-      if (password != confirmPassword) {
+      if (password !== confirmPassword) {
         toast.error(
           "Please Make Sure your password and Confirm Password matches!"
         );
@@ -74,6 +74,27 @@ function SignupForm() {
       // throw an error
     }
   };
+
+  const handleGoogleSignup = async () => {
+    try {
+        const userCredential = await signInWithPopup(auth, provider);
+        const user = userCredential.user;
+        console.log("user", user);
+        // Saving user's details.
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName,
+          email: user.email,
+          uid: user.uid,
+        });
+        toast.success("User has been created!");
+        setLoading(false);
+        navigate("/profile");
+      } catch (e) {
+        console.log("error", e);
+        toast.error(e.message);
+        setLoading(false);
+      }
+    }
 
   return (
     <>
@@ -109,6 +130,12 @@ function SignupForm() {
         text={loading ? "Loading..." : "Signup"}
         disabled={loading}
         onClick={handleSignup}
+      />
+      <Button
+        text={loading ? "Loading..." : "Signup with Google"}
+        isGoogleEnabled={true}
+        disabled={loading}
+        onClick={handleGoogleSignup}
       />
     </>
   );

@@ -1,4 +1,7 @@
 .custom-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   border: 2px solid var(--white);
   padding: 1rem;
@@ -14,4 +17,9 @@
   background-color: var(--white);
   color: var(--theme);
   transition: all 0.2s;
+}
+
+.google-icon{
+  width: 1.5rem;
+  margin-right: 0.5rem;
 }

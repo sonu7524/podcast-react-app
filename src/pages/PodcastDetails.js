@@ -77,7 +77,7 @@ function PodcastDetailsPage() {
               }}
             >
               <h1 className="podcast-title-heading">{podcast.title}</h1>
-              {podcast.createdBy == auth.currentUser.uid && (
+              {podcast.createdBy === auth.currentUser.uid && (
                 <Button
                   width={"200px"}
                   text={"Create Episode"}

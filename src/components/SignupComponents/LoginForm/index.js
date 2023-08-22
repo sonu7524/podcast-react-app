@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import InputComponent from "../../common/Input";
 import Button from "../../common/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../../firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, db, provider } from "../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../slices/userSlice";
 import { toast } from "react-toastify";
+
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -53,6 +54,34 @@ function LoginForm() {
       setLoading(false);
     }
   };
+
+  const handleGoogleLogin = async () => {
+    console.log("Handling Google Login");
+    setLoading(true);
+    try {
+      const userCredential = await signInWithPopup(auth, provider);
+      const user = userCredential.user;
+      console.log("user", user);
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+        const userData = userDoc.data();
+        console.log("userData", userData);
+        dispatch(
+          setUser({
+            name: userData.name,
+            email: user.email,
+            uid: user.uid,
+          })
+        );
+        toast.success("Login Successful!");
+        setLoading(false);
+        navigate("/profile"); 
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+      setLoading(false);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
       <InputComponent
@@ -73,6 +102,12 @@ function LoginForm() {
       <Button
         text={loading ? "Loading..." : "Login"}
         onClick={handleLogin}
+        disabled={loading}
+      />
+      <Button
+        text={loading ? "Loading..." : "Login with Google"}
+        isGoogleEnabled={true}
+        onClick={handleGoogleLogin}
         disabled={loading}
       />
     </>
