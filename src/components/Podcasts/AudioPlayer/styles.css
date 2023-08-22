@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background-color: rgba(14, 2, 21, 0.5);
+  background-color: rgba(14, 2, 21, 1);
 }
 
 .display-image-player {
@@ -28,12 +28,12 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  width: 50%;
+  width: 60%;
 }
 
 .volume-range {
   filter: hue-rotate(25deg);
-  width: 25%;
+  width: 10%;
 }
 
 .audio-btn {
