@@ -13,6 +13,22 @@
   font-weight: 500;
 }
 
+.google-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--white);
+  color: var(--theme);
+  padding: 1rem;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  width: 70vw;
+  margin: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 .custom-btn:hover {
   background-color: var(--white);
   color: var(--theme);
@@ -20,6 +36,6 @@
 }
 
 .google-icon{
-  width: 1.5rem;
+  width: 2rem;
   margin-right: 0.5rem;
 }
