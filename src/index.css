@@ -89,4 +89,17 @@ a {
   .podcasts-flex {
     flex-direction: column;
   }
+  .input-wrapper{
+    width: 90vw;
+    margin: 0 1rem;
+  }
+  .input-wrapper h1 {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  .banner-wrapper img{
+    height: 200px;
+  }
 }
