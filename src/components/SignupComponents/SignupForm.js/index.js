@@ -54,13 +54,16 @@ function SignupForm() {
         await uploadBytes(displayImageRef, displayImage);
 
         const displayImageUrl = await getDownloadURL(displayImageRef);
-        // Saving user's details.
-        await setDoc(doc(db, "users", user.uid), {
+
+        const userData = {
           name: fullName,
           email: user.email,
           uid: user.uid,
           displayImageUrl: displayImageUrl,
-        });
+        }
+        // Saving user's details.
+        await setDoc(doc(db, "users", user.uid), userData);
+        //localStorage.setItem("user", JSON.stringify(userData));
 
         // Save data in the redux, call the redux action
         dispatch(
@@ -99,15 +102,17 @@ function SignupForm() {
         const userCredential = await signInWithPopup(auth, provider);
         const user = userCredential.user;
         console.log("user", user);
-        
-        // Saving user's details.
-        await setDoc(doc(db, "users", user.uid), {
+
+        const googleUser = {
           name: user.displayName,
           email: user.email,
           uid: user.uid,
           displayImageUrl: user.photoURL,
-        });
-
+        }
+        
+        // Saving user's details.
+        await setDoc(doc(db, "users", user.uid), googleUser);
+        //localStorage.setItem("user", JSON.stringify(googleUser));
 
         dispatch(
           setUser({

@@ -16,9 +16,12 @@ function Profile() {
     return <Loader />;
   }
 
+  //const localUser = JSON.parse(localStorage.getItem("user"));
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
+        //localStorage.removeItem("user");
         toast.success("User Logged Out!");
       })
       .catch((error) => {

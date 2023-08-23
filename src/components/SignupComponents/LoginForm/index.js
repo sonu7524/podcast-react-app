@@ -31,6 +31,7 @@ function LoginForm() {
 
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const userData = userDoc.data();
+        //localStorage.setItem("user", JSON.stringify(userData));
         console.log("userData", userData);
 
         dispatch(
@@ -62,10 +63,20 @@ function LoginForm() {
     try {
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-      console.log("user", user);
+      console.log("userData", user);
+      
       const userDoc = await getDoc(doc(db, "users", user.uid));
         const userData = userDoc.data();
+
         console.log("userData", userData);
+        const sessionUser = {
+          name: userData.name,
+          email: user.email,
+          uid: user.uid,
+          displayImageUrl: user.photoURL,
+        };
+        //localStorage.setItem("user", JSON.stringify(sessionUser));
+
         dispatch(
           setUser({
             name: userData.name,
@@ -74,6 +85,8 @@ function LoginForm() {
             displayImageUrl: user.photoURL,
           })
         );
+
+        
         toast.success("Login Successful!");
         setLoading(false);
         navigate("/profile"); 
