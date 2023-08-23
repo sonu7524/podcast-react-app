@@ -11,7 +11,7 @@ function Header() {
     <div className="navbar">
       <div className="gradient"></div>
       <div className="links">
-        <Link to="/" className={currentPath == "/" ? "active" : ""}>
+        <Link to="/signup" className={currentPath == "/signup" ? "active" : ""}>
           Signup
         </Link>
         <Link

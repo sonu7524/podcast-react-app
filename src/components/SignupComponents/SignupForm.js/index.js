@@ -76,7 +76,7 @@ function SignupForm() {
         );
         toast.success("User has been created!");
         setLoading(false);
-        navigate("/profile");
+        navigate("/");
       } catch (e) {
         console.log("error", e);
         toast.error(e.message);
@@ -125,7 +125,7 @@ function SignupForm() {
 
         toast.success("User has been created!");
         setLoading(false);
-        navigate("/profile");
+        navigate("/");
       } catch (e) {
         console.log("error", e);
         toast.error(e.message);

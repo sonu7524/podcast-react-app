@@ -15,6 +15,7 @@ import CreateAPodcastPage from "./pages/CreateAPodcast";
 import PodcastsPage from "./pages/Podcasts";
 import PodcastDetailsPage from "./pages/PodcastDetails";
 import CreateAnEpisodePage from "./pages/CreateAnEpisode";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,7 +59,8 @@ function App() {
       <ToastContainer />
       <Router>
         <Routes>
-          <Route path="/" element={<SignUpPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />

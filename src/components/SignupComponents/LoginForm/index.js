@@ -10,10 +10,11 @@ import { setUser } from "../../../slices/userSlice";
 import { toast } from "react-toastify";
 
 
-function LoginForm() {
+function LoginForm({setIsLoggedin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  //const [isLoggedin, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +32,6 @@ function LoginForm() {
 
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const userData = userDoc.data();
-        //localStorage.setItem("user", JSON.stringify(userData));
         console.log("userData", userData);
 
         dispatch(
@@ -44,6 +44,7 @@ function LoginForm() {
         );
         toast.success("Login Successful!");
         setLoading(false);
+        //setIsLoggedIn(true);
         navigate("/profile");
         // Navigate to the profile page
       } catch (error) {
@@ -69,13 +70,7 @@ function LoginForm() {
         const userData = userDoc.data();
 
         console.log("userData", userData);
-        const sessionUser = {
-          name: userData.name,
-          email: user.email,
-          uid: user.uid,
-          displayImageUrl: user.photoURL,
-        };
-        //localStorage.setItem("user", JSON.stringify(sessionUser));
+       
 
         dispatch(
           setUser({
@@ -89,6 +84,7 @@ function LoginForm() {
         
         toast.success("Login Successful!");
         setLoading(false);
+        //setIsLoggedIn(true);
         navigate("/profile"); 
     } catch (error) {
       console.error("Error signing in with Google:", error);

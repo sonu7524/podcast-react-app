@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import Header from "../components/common/Header";
 import Button from "../components/common/Button";
@@ -10,6 +10,7 @@ import ProfileInfo from "../components/Profile";
 
 function Profile() {
   const user = useSelector((state) => state.user.user);
+  const [isLoggedin, setIsLoggedIn] = useState(false);
 
   console.log("My User", user);
   if (!user) {
@@ -23,6 +24,7 @@ function Profile() {
       .then(() => {
         //localStorage.removeItem("user");
         toast.success("User Logged Out!");
+        setIsLoggedIn(false);
       })
       .catch((error) => {
         // An error happened.
@@ -32,7 +34,7 @@ function Profile() {
 
   return (
     <div>
-      <Header />
+      <Header isLoggedIn={isLoggedin} />
       <ProfileInfo user={user} />
       <div className="logout-btn">
       <button 
