@@ -14,6 +14,7 @@ function PodcastDetailsPage() {
   const [podcast, setPodcast] = useState({});
   const [episodes, setEpisodes] = useState([]);
   const [playingFile, setPlayingFile] = useState("");
+  
 
   console.log("ID", id);
   useEffect(() => {

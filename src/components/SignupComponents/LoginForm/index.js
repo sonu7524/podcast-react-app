@@ -125,6 +125,7 @@ function LoginForm() {
         onClick={handleGoogleLogin}
         disabled={loading}
       />
+      {/* <Footer /> */}
     </>
   );
 }

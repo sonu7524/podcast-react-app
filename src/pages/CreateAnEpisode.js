@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { auth, db, storage } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
+
 function CreateAnEpisodePage() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -90,6 +91,7 @@ function CreateAnEpisodePage() {
           onClick={handleSubmit}
         />
       </div>
+      {/* <Footer /> */}
     </div>
   );
 }

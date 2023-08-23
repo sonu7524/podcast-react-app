@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { Link, useLocation } from "react-router-dom";
+import TemporaryDrawer from "./drawer";
 
 function Header() {
   const location = useLocation();
@@ -31,6 +32,9 @@ function Header() {
         >
           Profile
         </Link>
+      </div>
+      <div className="mobile-drawer">
+          <TemporaryDrawer />
       </div>
     </div>
   );

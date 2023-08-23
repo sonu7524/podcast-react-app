@@ -3,6 +3,7 @@ import Header from "../components/common/Header";
 import SignupForm from "../components/SignupComponents/SignupForm.js/index.js";
 import LoginForm from "../components/SignupComponents/LoginForm";
 
+
 function SignUpPage() {
   const [flag, setFlag] = useState(false);
 
@@ -22,6 +23,7 @@ function SignUpPage() {
           </p>
         )}
       </div>
+      {/* <Footer /> */}
     </div>
   );
 }

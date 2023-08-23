@@ -10,6 +10,7 @@ function CreateAPodcastPage() {
         <h1>Create A Podcast</h1>
         <CreatePodcastForm />
       </div>
+      {/* <Footer /> */}
     </div>
   );
 }

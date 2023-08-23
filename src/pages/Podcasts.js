@@ -67,6 +67,7 @@ function PodcastsPage() {
           <p>{search ? "Podcast Not Found" : "No Podcasts On The Platform"}</p>
         )}
       </div>
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background-color: rgb(53, 5, 61);
+  background-color: rgb(53, 5, 61, 0.9);
 }
 
 .display-image-player {
@@ -20,7 +20,7 @@
 
 .duration-range {
   filter: hue-rotate(25deg);
-  width: 100%;
+  width: 90%;
 }
 
 .duration-flex {
@@ -28,7 +28,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  width: 60%;
+  width: 55%;
 }
 
 .volume-range {
@@ -38,6 +38,7 @@
 
 .audio-btn {
   cursor: pointer;
+  margin-right: 0.5;
 }
 
 @media (max-width: 768px) {
@@ -45,6 +46,7 @@
     display: none;
   }
   .custom-audio-player{
+    padding: 1.5rem 0.5rem;
     width: 100%;
   }
 }
