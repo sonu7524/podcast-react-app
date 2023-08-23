@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import InputComponent from "../../common/Input";
 import Button from "../../common/Button";
-import { auth, db,provider } from "../../../firebase";
+import { auth, db,provider,storage } from "../../../firebase";
 import { createUserWithEmailAndPassword,signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import FileInput from "../../common/Input/FileInput";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 function SignupForm() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayImage, setDisplayImage] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const displayImageHandle = (file) => {
+    setDisplayImage(file);
+  };
 
   const handleSignup = async () => {
     console.log("Handling Signup...");
@@ -26,22 +33,33 @@ function SignupForm() {
       password.length >= 6 &&
       fullName &&
       email
+      && displayImage
     ) {
       try {
         // Creating user's account.
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           email,
-          password
+          password    
         );
 
         const user = userCredential.user;
+
         console.log("user", user);
+
+        const displayImageRef = ref(
+          storage,
+          `profile/${auth.currentUser.uid}/${Date.now()}`
+        );
+        await uploadBytes(displayImageRef, displayImage);
+
+        const displayImageUrl = await getDownloadURL(displayImageRef);
         // Saving user's details.
         await setDoc(doc(db, "users", user.uid), {
           name: fullName,
           email: user.email,
           uid: user.uid,
+          displayImageUrl: displayImageUrl,
         });
 
         // Save data in the redux, call the redux action
@@ -50,6 +68,7 @@ function SignupForm() {
             name: fullName,
             email: user.email,
             uid: user.uid,
+            displayImageUrl: displayImageUrl,
           })
         );
         toast.success("User has been created!");
@@ -80,12 +99,25 @@ function SignupForm() {
         const userCredential = await signInWithPopup(auth, provider);
         const user = userCredential.user;
         console.log("user", user);
+        
         // Saving user's details.
         await setDoc(doc(db, "users", user.uid), {
           name: user.displayName,
           email: user.email,
           uid: user.uid,
+          displayImageUrl: user.photoURL,
         });
+
+
+        dispatch(
+          setUser({
+            name: user.displayName,
+            email: user.email,
+            uid: user.uid,
+            displayImageUrl: user.photoURL,
+          })
+        );
+
         toast.success("User has been created!");
         setLoading(false);
         navigate("/profile");
@@ -126,6 +158,14 @@ function SignupForm() {
         type="password"
         required={true}
       />
+
+      <FileInput
+        accept={"image/*"}
+        id="display-image-input"
+        fileHandleFnc={displayImageHandle}
+        text={"Display Image Upload"}
+      />
+      
       <Button
         text={loading ? "Loading..." : "Signup"}
         disabled={loading}

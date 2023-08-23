@@ -1,4 +1,16 @@
 .profile{
     padding: 0rem 1rem;
     margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img{
+    margin-top: 1rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
 }

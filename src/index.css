@@ -77,3 +77,10 @@ a {
   text-align: left;
   width: 100%;
 }
+
+.logout-btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

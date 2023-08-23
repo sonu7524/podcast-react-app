@@ -31,9 +31,11 @@ function Profile() {
     <div>
       <Header />
       <ProfileInfo user={user} />
+      <div className="logout-btn">
       <button 
       style={{ margin: "0 3rem", padding: "1rem 3rem", backgroundColor: "transparent", color: "white", border: "1px solid white", borderRadius: "5px", fontSize: "1rem" }}
       onClick={handleLogout} >Logout</button>
+      </div>
     </div>
   );
 }

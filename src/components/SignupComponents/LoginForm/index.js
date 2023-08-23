@@ -38,6 +38,7 @@ function LoginForm() {
             name: userData.name,
             email: user.email,
             uid: user.uid,
+            displayImageUrl: userData.displayImageUrl,
           })
         );
         toast.success("Login Successful!");
@@ -70,6 +71,7 @@ function LoginForm() {
             name: userData.name,
             email: user.email,
             uid: user.uid,
+            displayImageUrl: user.photoURL,
           })
         );
         toast.success("Login Successful!");
